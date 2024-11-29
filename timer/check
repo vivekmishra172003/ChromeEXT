@@ -1,0 +1,56 @@
+I'll help you correct the Chrome extension code. Here's an improved version:
+
+```javascript
+// popup.js
+document.addEventListener('DOMContentLoaded', () => {
+    const timeElement = document.getElementById("time");
+    const nameElement = document.getElementById("name");
+
+    // Display current time
+    const currTime = new Date().toLocaleTimeString();
+    timeElement.textContent = `Time is now ${currTime}`;
+
+    // Set badge text
+    chrome.action.setBadgeText({ 
+        text: "Time" 
+    }, () => {
+        console.log("Finished Badge text");
+    });
+
+    // Retrieve and display name from storage
+    chrome.storage.sync.get("name", (data) => {
+        nameElement.textContent = data.name || "No name set";
+    });
+});
+
+// options.js
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("Hello from the options page");
+    const nameInput = document.getElementById("nameInput");
+    const saveButton = document.getElementById("saveButton");
+
+    saveButton.addEventListener("click", () => {
+        const name = nameInput.value.trim();
+        
+        if (name) {
+            chrome.storage.sync.set({ name }, () => {
+                console.log(`Name is set to ${name}`);
+                nameInput.value = ''; // Clear input after saving
+            });
+        } else {
+            alert("Please enter a name");
+        }
+    });
+});
+
+```
+
+Key corrections and improvements:
+1. Added `DOMContentLoaded` event listeners to ensure DOM is fully loaded
+2. Fixed variable naming conventions (camelCase)
+3. Added error handling for empty name input
+4. Added fallback text if no name is set
+5. Cleared input after saving name
+6. Trimmed input to remove unnecessary whitespace
+
+Make sure your `manifest.json` is configured correctly to support these scripts and storage permissions.
