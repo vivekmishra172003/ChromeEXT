@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const nameInput = document.getElementById("nameInput");
     const saveButton = document.getElementById("saveButton");
 
+    
+
     saveButton.addEventListener("click", () => {
         const name = nameInput.value.trim();
         
