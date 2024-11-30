@@ -8,5 +8,12 @@ chrome.alarms.onAlarm.addListener((alarm) => {
         const time = res.timer ?? 0
         chrome.storage.local.set({timer: time + 1})  
         chrome.action.setBadgeText({text:`${time+1}`})
+        if(time%10===0){
+            this.registration.showNotification("Chrome timer Extension",{
+                body:"1 second has passed",
+                icon:"icon.png"
+            })
+        }
+
     })
 })
