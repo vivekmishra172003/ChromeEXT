@@ -23,3 +23,24 @@ setInterval(updateTimerElement, 1000);
         nameElement.textContent = data.name || "No name set";
     });
 });
+
+const StartBtn = document.getElementById("start");
+const StopBtn = document.getElementById("stop");
+const ResetBtn = document.getElementById("reset");
+
+StartBtn.addEventListener("click",()=>{
+    chrome.storage.local.set({
+        isRunning:true
+    })
+})
+StopBtn.addEventListener("click",()=>{
+    chrome.storage.local.set({
+        isRunning:false
+    })
+})
+ResetBtn.addEventListener("click",()=>{
+    chrome.storage.local.set({
+        timer:0,
+        isRunning:false
+    })
+})
