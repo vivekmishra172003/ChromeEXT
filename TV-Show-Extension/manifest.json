@@ -1,0 +1,22 @@
+{
+    "manifest_version": 3,
+    "name": "TV show Search",
+    "description": "Search for all your fav  TV shows",
+    "version": "1.0",
+    "icons": {
+        "128": "icon.png",
+        "48": "icon.png",
+        "16": "icon.png"
+    },
+    "action": {
+        "default_popup": "popup/popup.html",
+        "default_icon": "icon.png",
+        "default_title": "TV show Search"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "permissions":[
+        "contextMenus"
+    ]
+}
